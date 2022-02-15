@@ -6,8 +6,10 @@ CONFIG -= qt
 SOURCES += \
         board.cpp \
         cell.cpp \
+        controller.cpp \
         main.cpp
 
 HEADERS += \
     board.h \
-    cell.h
+    cell.h \
+    controller.h
