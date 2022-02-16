@@ -3,7 +3,7 @@
 Board::Board(void){
 
     for (int i=0;i<16;i++)
-        Cells.push_back( new Cell((i+1),this));
+        Cells.push_back( new Cell((i),this));
 
 }
 
@@ -11,7 +11,7 @@ bool Board::IsWin()
 {int i=0;
     for(auto &c:Cells)
       {
-        if (++i!=c->getNumber()) return false;
+        if (i++!=c->getNumber()) return false;
       }
   return true;
 }
@@ -33,8 +33,11 @@ int Board::IsMovieCellTo(int i)
    for(int m=0;m<4;m++)
     if (c->isMovie(enMOVIES(m)))
       { class Cell *c2= c->Movie(enMOVIES(m));
-        int n2=getNumberCell(c2);
-        return n2;//getCell(n2);
+        if(c2->getNumber()==0)
+        {
+            int tt=getNumberCell(c2);
+            return tt;
+        }
       }
   return -1;
 }
@@ -53,9 +56,9 @@ Cell *Board::getCell(int i)
 
 int Board::getNumberCell(Cell *c)
 {int i=0;
-    for(auto t=Cells.begin();t<=Cells.end(); t++)
+    for(auto t:Cells)
     {
-        if(*t.base() ==c) return i;
+        if(t->getName() ==c->getName()) return i;
         i++;
     }
 }

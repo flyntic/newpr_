@@ -40,17 +40,18 @@ void Cell::copyCell(Cell *c_2)
 }
 
 bool Cell::isMovie(enMOVIES m)
-{
-  return true;
+{ return this->movies[m];
+//  return true;
 }
 
 Cell *Cell::Movie(enMOVIES m)
-{Board * B;
+{Board * B=this->board;
+ int i=B->getNumberCell(this);
   switch (m)
   {
-    case MOVIE_UP:    return B->getCell(B->getNumberCell(this)-4);
-    case MOVIE_DOWN:  return B->getCell(B->getNumberCell(this)+4);
-    case MOVIE_LEFT:  return B->getCell(B->getNumberCell(this)-1);
-    case MOVIE_RIGHT: return B->getCell(B->getNumberCell(this)+1);
+    case MOVIE_UP:    return B->getCell(i-4);
+    case MOVIE_DOWN:  return B->getCell(i+4);
+    case MOVIE_LEFT:  return B->getCell(i-1);
+    case MOVIE_RIGHT: return B->getCell(i+1);
   }
 }
