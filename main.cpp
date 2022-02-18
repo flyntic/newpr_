@@ -1,4 +1,5 @@
 #include <iostream>
+#include <time.h>
 #include "Board.h"
 #include "Controller.h"
 using namespace std;
@@ -7,38 +8,36 @@ int main()
 {
     Board *B=new Board();
     Controller * C=new Controller();
-    srand(time(0));
-    int n=rand()%90+10;
-    int c1,c2;
-   /* for (int i=0;i<n;i++)
-     {
-        c1=rand()%16;
-        c2=rand()%16;
-        B->Swap(B->getCell(c1),B->getCell(c2));
-     }*/
+
+    int level;
+    std::cout<<"LEVEL(int)?" ;
+    std::cin>>level;
+
+    C->start(B,level);
+
+    int hod;
+    while (! C->isWin(B))  //имитация игры
+    {
+      B->printBoard();
+      std::cout<<"POSIBLE: ";
+      for(int i=0;i<16;i++)   //подсказка игроку о возможных ходах
+      {   int n=B->IsMovieCellTo(i);
+          if (n!=-1)
+          {  std::cout<<i<<" --> "<<n<<" ; ";
+             hod=i;
+           }
+      };
+
+      std::cout<<" MOVI ? ";  //выбор хода игрока
+      std::cin>>hod;
+
+      if (C->move(hod,B))   //ход
+        std::cout<<" MOVI: "<<hod<<endl;
+      else std::cout<<" MOVI NOT POSIBLE "<<endl;;
+    }
 
     B->printBoard();
-    int hod;
-  //  int n=0;
-    do
-    {
-    for(int i=0;i<16;i++)
-    {
-        if (B->IsMovieCellTo(i)!=-1)
-          {  std::cout<<i<<";";
-            hod=i;
-        }
-    };
-
-     std::cout<<"РҐРћР”:"<<hod<<endl;
-     C->move(hod,B);
-
-     B->printBoard();
-   }
-    while (!B->IsWin());
-
-
-        std::cout<<"РџРћР‘Р•Р”Рђ";
+    std::cout<<"WIN";
 
     return 1;
 }

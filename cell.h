@@ -23,8 +23,11 @@ public:
     const std::string &getName() const;
     int getNumber() const;
     void copyCell(class Cell *c_2 );
-    bool isMovie(enMOVIES m);
-    class Cell* Movie(enMOVIES m);
+
+    bool isMovieFromCell(enMOVIES m);
+    class Cell* MovieFromCell(enMOVIES m);
+
+    void printCell();
 private:
     std::string name;
     int number;

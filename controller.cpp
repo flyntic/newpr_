@@ -13,3 +13,14 @@ bool Controller::move(int i, class Board* B)
       B->Swap(B->getCell(i),B->getCell(j)) ;
       return true;
 }
+
+bool Controller::start(Board *B,int level)
+{
+  B->Start(level);
+  return true;
+}
+
+bool Controller::isWin(Board *B)
+{
+  return B->IsWin();
+}
